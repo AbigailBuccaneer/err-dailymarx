@@ -15,11 +15,17 @@ class MarxBot(BotPlugin):
 
     def activate(self):
         super().activate()
-        if self.config is None or self.config["consumer_key"] == "" or self.config["consumer_secret"] == "":
-            self.warn_admins("MarxBot must be configured with OAuth consumer key/secret")
+        if self.config is None or self.config["consumer_key"] == "" or \
+                self.config["consumer_secret"] == "":
+            self.warn_admins(
+                    "MarxBot must be configured with OAuth consumer key/secret"
+            )
             return
-        if self.config["oauth_token"] == "" or self.config["oauth_token_secret"] == "":
-            self.warn_admins("MarxBot must be configured with OAuth token key/secret (for now)")
+        if self.config["oauth_token"] == "" or \
+                self.config["oauth_token_secret"] == "":
+            self.warn_admins(
+                    "MarxBot must be configured with OAuth token key/secret "
+                    "(for now)")
             return
         self.tumblr_client = pytumblr.TumblrRestClient(
                 self.config["consumer_key"],
@@ -35,13 +41,17 @@ class MarxBot(BotPlugin):
                 "oauth_token_secret": ""}
 
     def fetch_latest_post(self):
-        if 'last_fetch' in self.keys() and time() - self['last_fetch'] < self.poll_interval:
+        if 'last_fetch' in self.keys() and \
+                time() - self['last_fetch'] < self.poll_interval:
             return
         if self.tumblr_client is None:
-            raise MarxBot.NotConfiguredError("MarxBot must be configured and restarted to fetch quotes.")
+            raise MarxBot.NotConfiguredError(
+                    "MarxBot must be configured and restarted to fetch quotes."
+            )
         post = self.tumblr_client.posts("dailymarx", limit=1)['posts'][0]
         self['last_fetch'] = time()
-        if self['latest_post'] is None or self['latest_post']['id'] != post['id']:
+        if self['latest_post'] is None or \
+                self['latest_post']['id'] != post['id']:
             self.handle_new_post(post)
 
     @botcmd
