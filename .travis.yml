@@ -1,0 +1,13 @@
+language: python
+python:
+        - 2.7
+        - 3.4
+install:
+        - pip install -r requirements.txt --use-wheel
+        - pip install coverage coveralls pytest pytest-pep8
+script:
+        - coverage run --source marxbot -m py.test --pep8
+after_success:
+        - coveralls
+notifications:
+        email: false
