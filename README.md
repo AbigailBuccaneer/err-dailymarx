@@ -7,12 +7,13 @@ an errbot plugin that provides you with a daily Marx quote from [dailymarx.tumbl
 1. [Register a tumblr application](https://www.tumblr.com/oauth/apps)
 2. [Get an OAuth token](https://api.tumblr.com/console)
 3. In errbot:
-
-    !repos install https://github.com/AbigailBuccaneer/err-dailymarx.git
-    !plugin config MarxBot {'consumer_key': '...',
-                            'consumer_secret: '...',
-                            'oauth_token': '...',
-                            'oauth_token_secret': '...' }
+```
+!repos install https://github.com/AbigailBuccaneer/err-dailymarx.git
+!plugin config MarxBot {'consumer_key': '...',
+                        'consumer_secret: '...',
+                        'oauth_token': '...',
+                        'oauth_token_secret': '...' }
+```
 
 ## Using
 
