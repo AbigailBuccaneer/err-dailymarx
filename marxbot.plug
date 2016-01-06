@@ -1,0 +1,9 @@
+[Core]
+Name = MarxBot
+module = marxbot
+
+[Documentation]
+Description = Your daily Marx
+
+[Python]
+Version = 3
